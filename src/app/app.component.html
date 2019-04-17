@@ -1,0 +1,100 @@
+<div class="container">
+    <br />
+    <br />
+
+
+  <h1>
+      United Airlines Flight Status  
+  </h1>
+
+
+
+  <form [formGroup]="angularForm" novalidate>
+    <div class="form-group">
+      <label>Flight Number: <input class="form-control" formControlName="flightNumber" type="text"></label>
+
+      <label>Origin Port: <input class="form-control" formControlName="origin" type="text"></label>
+      <label>Destination Port: <input class="form-control" formControlName="destination" type="text"></label>
+      <label>Arrival/Departure Date* : <input class="form-control" formControlName="fdate" type="date"></label>
+
+
+
+
+
+    </div>
+    <br />
+
+    <button (click)="get_flights()" [disabled]="angularForm.pristine || angularForm.invalid" class="btn btn-success">
+      Search
+    </button>
+
+
+    <br />
+    <br />
+
+    <div class="alert alert-warning"> {{message}} </div>
+    <br />
+    <br />
+
+    <!-- <div
+      *ngIf="angularForm.controls['flightNumber'].invalid && (angularForm.controls['flightNumber'].dirty || angularForm.controls['flightNumber'].touched)"
+      class="alert alert-danger">
+      <div *ngIf="angularForm.controls['flightNumber'].errors.required">
+        flightNumber is required.
+      </div>
+  <button (click)="get_flights()"> get_flights query</button>
+
+  
+    </div> -->
+
+
+
+
+
+  </form>
+  <br />
+
+
+
+  <div *ngIf="flights?.length > 0">
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>
+            Flight Number
+          </th>
+          <th>
+            Carrier
+          </th>
+          <th>Origin </th>
+          <th>Departure time</th>
+          <th>Destination </th>
+          <th>Arrival time</th>
+          <th>Status </th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let flight of flights  ">
+
+          <td>
+            {{flight.flightNumber}}
+          </td>
+          <td>
+            {{flight.carrier}}
+          </td>
+          <td> {{flight.origin}} </td>
+          <td> {{flight.departure}} </td>
+          <td> {{flight.destination}} </td>
+          <td> {{flight.arrival}} </td>
+          <td> {{flight.status}} </td>
+
+        </tr>
+      </tbody>
+    </table>
+
+
+  </div>
+
+</div>
